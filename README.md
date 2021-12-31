@@ -4,10 +4,10 @@ In this repository, you can find all resources, homeworks and projects from my <
 
 ## Content
 
-### Year One
+### First Year
 #### Term One
 #### Term Two
 
-### Year Two
+### Second Year
 #### Term One
 #### Term Two
