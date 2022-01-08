@@ -1,0 +1,349 @@
+1. a)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    if(l.count(l[0])==len(l)):
+        return mat
+    else:
+        return None
+
+print(citire_matrice("departamente.in"))
+
+b) def multimi(m, *args):
+
+    min=[]
+    plus=[]
+
+    for linie in args:
+        for i in range(0,len(m[linie])):
+            if int(m[linie][i])<0 and m[linie][i][1]==m[linie][i][-1]:
+                min.append(int(m[linie][i]))
+            if int(m[linie][i])>=0 and m[linie][i][0]==m[linie][i][-1]:
+                plus.append(m[linie][i])
+
+    setnegative = set(min)
+    setpozitive = set(plus)
+
+    return setnegative, setpozitive
+
+
+c)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    if(l.count(l[0])==len(l)):
+        return mat
+    else:
+        return None
+
+def multimi(m, *args):
+
+    min=[]
+    plus=[]
+
+    for linie in args:
+        for i in range(0,len(m[linie])):
+            if int(m[linie][i])<0 and m[linie][i][1]==m[linie][i][-1]:
+                min.append(int(m[linie][i]))
+            if int(m[linie][i])>=0 and m[linie][i][0]==m[linie][i][-1]:
+                plus.append(m[linie][i])
+
+    setnegative = set(min)
+    setpozitive = set(plus)
+
+    return setnegative, setpozitive
+
+mat=citire_matrice("matrice.in")
+setneg,setpoz=multimi(mat,-1,-2,-3)
+vectorsetpoz=[]
+for n in setpoz:
+    n=int(n)
+    vectorsetpoz.append(n)
+for n in sorted(vectorsetpoz):
+    print(n,end=" ")
+print()
+
+vectordistneg=[]
+
+for i in range(0,len(mat[0])):
+    if int(mat[0][i])<0:
+        if mat[0][i] in mat[-1]:
+            vectordistneg.append(int(mat[0][i]))
+
+vectordistneg=set(vectordistneg)
+print(len(vectordistneg))
+
+2. a)
+
+def modifica_prefix(x,y,prop):
+    sirfinal=''
+    contor=0
+    for cuvant in prop.split():
+        if cuvant.startswith(x):
+            sirfinal+= cuvant.replace(x,y)
+            sirfinal+=" "
+            contor+=1
+        else:
+            sirfinal+=cuvant
+            sirfinal += " "
+    return sirfinal,contor
+
+b)
+
+def poz_max(v):
+    maxim=int(v[0])
+    for i in range(len(v)):
+        if(int(v[i])>maxim):
+            maxim=v[i]
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+--------------------------------------
+
+def poz_max(v):
+    maxim=max(v)
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+c)
+
+def modifica_prefix(x,y,prop):
+    sirfinal=''
+    contor=0
+    for cuvant in prop.split():
+        if cuvant.startswith(x):
+            sirfinal+= cuvant.replace(x,y)
+            sirfinal+=" "
+            contor+=1
+        else:
+            sirfinal+=cuvant
+            sirfinal += " "
+    return sirfinal,contor
+
+
+def poz_max(v):
+    maxim=max(v)
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+#print(poz_max([8,22,5,22,23,0,0,8]))
+
+f=open("propozitii.in", 'r')
+prop=[line.rstrip() for line in f]
+#print(prop)
+a=input("a=")
+b=input("b=")
+lista_maxime_indici=[]
+with open('propozitii_modificate.out', 'w') as g:
+    for i in prop:
+        sirdeafisat,cont=modifica_prefix(a,b,i)
+        print(sirdeafisat,file=g)
+        lista_maxime_indici.append(cont)
+vector_de_afisat=poz_max(lista_maxime_indici)
+for nr in vector_de_afisat:
+    print(nr,end=" ")
+
+
+3.
+
+a)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("departamente.in")
+print(mat)
+
+departamente={}
+angajati=[]
+
+nr_departamente=int(mat[0][0])
+nr_angajati=int(mat[0][1])
+
+contor=1
+for i in range(contor,contor+nr_departamente):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    departamente[int(numar)]=str;
+
+#print(departamente)
+
+contor=nr_departamente+1;
+for i in range(contor,contor+nr_angajati):
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),float(mat[i][3]), mat[i][4]+" "+mat[i][5])
+    angajati.append(tupl)
+
+#print(angajati)
+
+
+
+b)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("departamente.in")
+print(mat)
+
+departamente={}
+angajati=[]
+
+nr_departamente=int(mat[0][0])
+nr_angajati=int(mat[0][1])
+
+angajati.append((nr_departamente,nr_angajati))
+
+contor=1
+for i in range(contor,contor+nr_departamente):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    angajati.append((int(numar),str))
+
+#print(departamente)
+
+contor=nr_departamente+1;
+for i in range(contor,contor+nr_angajati):
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),float(mat[i][3]), mat[i][4]+" "+mat[i][5])
+    angajati.append(tupl)
+
+print(angajati)
+
+def detalii_angajat(ang,cod_dep,cod_ang):
+    tuplu_info=0
+    gasit1=0
+    gasit2=0
+    for i in range(1,1+ang[0][0]):
+        if ang[i][0]==cod_dep:
+            gasit1=1
+    for i in range(1+ang[0][0],1+ang[0][0]+ang[0][1]):
+        if ang[i][1]==cod_ang and ang[i][0]==cod_dep:
+            gasit2=1
+            tuplu_info=ang[i]
+    if gasit1==0:
+        return None
+    if gasit2==0:
+        return None
+    return tuplu_info[4],tuplu_info[3],tuplu_info[2]
+
+
+nr_deptt=int(input("numar departament: "))
+nr_angg=int(input("numar angajat: "))
+
+if detalii_angajat(angajati,nr_deptt,nr_angg)==None:
+    print("date invalide")
+else:
+    nr1,nr2,nr3=detalii_angajat(angajati,nr_deptt,nr_angg)
+    print("Angajatul numit ", nr1, " are salariul ", nr2 ," si a fost angajat in anul " ,nr3 , ".")
+
+
+
+c)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("departamente.in")
+#print(mat)
+
+departamente={}
+angajati=[]
+
+nr_departamente=int(mat[0][0])
+nr_angajati=int(mat[0][1])
+
+angajati.append((nr_departamente,nr_angajati))
+
+contor=1
+for i in range(contor,contor+nr_departamente):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    angajati.append((int(numar),str))
+
+#print(departamente)
+
+contor=nr_departamente+1;
+for i in range(contor,contor+nr_angajati):
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),float(mat[i][3]), mat[i][4]+" "+mat[i][5])
+    angajati.append(tupl)
+
+print(angajati)
+
+def sortare(lst):
+    return -lst[2],-lst[1],lst[0]
+
+def angajati_departament(ang,cod_dep):
+    angaj_dept=[]
+    gasit1=0
+    gasit2=0
+    for i in range(1,1+ang[0][0]):
+        if ang[i][0]==cod_dep:
+            gasit1=1
+            nume_departamente=ang[i][1]
+            #print(nume_departamente)
+    for i in range(1+ang[0][0],1+ang[0][0]+ang[0][1]):
+        if ang[i][0]==cod_dep:
+            gasit2=1
+            tuplu_info=ang[i]
+            angaj_dept.append((tuplu_info[4], tuplu_info[3], tuplu_info[2]))
+    if gasit1==0:
+        return []
+    angaj_dept.sort(key=sortare)
+    return nume_departamente,angaj_dept
+
+nr_dpt=int(input("Numar departament: "))
+if(angajati_departament(angajati,nr_dpt)==[]):
+    print("cod incorect")
+else:
+    nume1,lst1=angajati_departament(angajati,nr_dpt)
+    print(nume1)
+    for i in lst1:
+     print(i[0],i[1],i[2])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

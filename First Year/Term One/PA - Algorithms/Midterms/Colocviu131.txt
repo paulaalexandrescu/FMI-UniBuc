@@ -1,0 +1,291 @@
+1. a)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    if(l.count(l[0])==len(l)):
+        return mat
+    else:
+        return None
+
+b)
+
+def elemente_divizibile(mat,x,*args):
+    coloane=[]
+    divizibile=[]
+    nedivizibile=[]
+    for i in args:
+        coloane.append(int(i))
+
+    for nrcol in coloane:
+        vectorcol = []
+        for linie in mat:
+            if(int(linie[nrcol])%x==0):
+               vectorcol.append(int(linie[nrcol]))
+            else:
+              nedivizibile.append(int(linie[nrcol]))
+            if(len(vectorcol)>0):
+              divizibile.append(set(vectorcol))
+    setdiv=divizibile[0]
+    for i in range(1,len(divizibile)):
+        setdiv=setdiv&divizibile[i]
+    #print(setdiv)
+
+    nedivizibile=set(nedivizibile)
+    return setdiv,nedivizibile
+
+c)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    if(l.count(l[0])==len(l)):
+        return mat
+    else:
+        return None
+
+matrica=citire_matrice("matrice.in")
+
+
+
+def elemente_divizibile(mat,x,*args):
+    coloane=[]
+    divizibile=[]
+    nedivizibile=[]
+    for i in args:
+        coloane.append(int(i))
+
+    for nrcol in coloane:
+        vectorcol = []
+        for linie in mat:
+            if(int(linie[nrcol])%x==0):
+               vectorcol.append(int(linie[nrcol]))
+            else:
+              nedivizibile.append(int(linie[nrcol]))
+        if (len(vectorcol) > 0):
+            divizibile.append(set(vectorcol))
+
+    setdiv=divizibile[0]
+    for i in range(1,len(divizibile)):
+        setdiv=setdiv&divizibile[i]
+    #print(setdiv)
+
+    nedivizibile=set(nedivizibile)
+    return setdiv,nedivizibile
+
+matrica=citire_matrice("matrice.in")
+pare,impare=elemente_divizibile(matrica,2,0,-1)
+pare2,impare2=elemente_divizibile(matrica,2,0,1,2)
+vectorpare=[]
+for n in pare:
+    vectorpare.append(int(n))
+vectorpare.sort()
+for n in vectorpare:
+    print(n,end=" ")
+print()
+print(len(impare2))
+
+
+2. a)
+
+def modifica_litera(p,x,y,prop):
+    contor=0
+    propozitie=""
+    mat=prop.split()
+    #print(mat)
+    for cuv in mat:
+        if(cuv[p]==x):
+            cuv=cuv[:p]+y+cuv[p+1:]
+            print(cuv)
+            contor=contor+1
+        propozitie = propozitie + cuv + " "
+
+    return propozitie,len(mat)-contor
+
+
+b)
+
+def poz_x(lst,x):
+    lst_poz=[]
+    for i in range(len(lst)):
+        if lst[i]==x:
+            lst_poz.append(i+1)
+    return lst_poz
+
+
+c)
+
+def modifica_litera(p,x,y,prop):
+    contor=0
+    propozitie=""
+    mat=prop.split()
+    #print(mat)
+    for cuv in mat:
+        if(p<len(cuv)):
+            if(cuv[p]==x):
+                cuv=cuv[:p]+y+cuv[p+1:]
+                print(cuv)
+                contor=contor+1
+        propozitie = propozitie + cuv + " "
+
+    return propozitie,len(mat)-contor
+
+
+def poz_x(lst,x):
+    lst_poz=[]
+    for i in range(len(lst)):
+        if lst[i]==x:
+            lst_poz.append(i+1)
+    return lst_poz
+
+
+f=open("propozitii.in", 'r')
+prop=[line.rstrip() for line in f]
+#print(prop)
+p=int(input("p="))
+x=input("x=")
+y=input("y=")
+lista_prop_indici=[]
+with open('propozitii_modificate.out', 'w') as g:
+    for i in prop:
+        sirdeafisat,cont=modifica_litera(p,x,y,i)
+        print(sirdeafisat,file=g)
+        lista_prop_indici.append(cont)
+print(lista_prop_indici)
+vector_de_afisat=poz_x(lista_prop_indici,0)
+for nr in vector_de_afisat:
+    print(nr,end=" ")
+
+
+3. a)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("pictori.in")
+print(mat)
+
+arta=[]
+
+nr_cumparatori=int(mat[0][0])
+nr_tablouri=int(mat[0][1])
+
+arta.append((nr_cumparatori,nr_tablouri))
+
+contor=1
+for i in range(contor,contor+nr_cumparatori):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    arta.append((int(numar),str))
+
+contor=nr_cumparatori+1
+for i in range(contor,contor+nr_tablouri):
+    str=""
+    for j in range(4, len(mat[i])):
+        str=str+mat[i][j]+" "
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),mat[i][3], str)
+    arta.append(tupl)
+
+print(arta)
+
+b)
+
+def detalii_tablou(arta,cod_pictor,cod_tablou):
+    tuplu_info = 0
+    gasit1 = 0
+    gasit2 = 0
+    for i in range(1, 1 + arta[0][0]):
+        if arta[i][0] == cod_pictor:
+            gasit1 = 1
+    for i in range(1 + arta[0][0], 1 + arta[0][0] + arta[0][1]):
+        if arta[i][1] == cod_tablou and arta[i][0] == cod_pictor:
+            gasit2 = 1
+            tuplu_info = arta[i]
+    if gasit1 == 0:
+        return None
+    if gasit2 == 0:
+        return None
+    return tuplu_info[4], tuplu_info[2]
+
+cod_p=int(input("cod pictor: "))
+cod_t=int(input("cod tablou: "))
+if(detalii_tablou(arta,cod_p,cod_t)==None):
+    print("date incorecte")
+else:
+    nume,an=detalii_tablou(arta,cod_p,cod_t)
+    print("Numele taboului este ", nume, " si a fost creat in anul ",an)
+
+c)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("pictori.in")
+
+arta=[]
+
+nr_cumparatori=int(mat[0][0])
+nr_tablouri=int(mat[0][1])
+
+arta.append((nr_cumparatori,nr_tablouri))
+
+contor=1
+for i in range(contor,contor+nr_cumparatori):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    arta.append((int(numar),str))
+
+contor=nr_cumparatori+1
+for i in range(contor,contor+nr_tablouri):
+    str=""
+    for j in range(4, len(mat[i])):
+        str=str+mat[i][j]+" "
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),mat[i][3], str)
+    arta.append(tupl)
+
+def sortare(lst):
+    return lst[1],lst[2],lst[0]
+
+def tablouri_pictor(ang,cod_dep):
+    angaj_dept=[]
+    gasit1=0
+    gasit2=0
+    for i in range(1,1+ang[0][0]):
+        if ang[i][0]==cod_dep:
+            gasit1=1
+            nume_departamente=ang[i][1]
+            #print(nume_departamente)
+    for i in range(1+ang[0][0],1+ang[0][0]+ang[0][1]):
+        if ang[i][0]==cod_dep:
+            gasit2=1
+            tuplu_info=ang[i]
+            angaj_dept.append((tuplu_info[4], tuplu_info[2], tuplu_info[3]))
+    if gasit1==0:
+        return []
+    angaj_dept.sort(key=sortare)
+    return nume_departamente,angaj_dept
+
+nr_artist=int(input("Numar artist: "))
+if(tablouri_pictor(arta,nr_artist)==[]):
+    print("cod incorect")
+else:
+    nume1,lst1=tablouri_pictor(arta,nr_artist)
+    print(nume1)
+    for i in lst1:
+     print(i[0],i[1],i[2])
+
+

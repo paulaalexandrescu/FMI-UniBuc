@@ -1,0 +1,198 @@
+1. a)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    for i in range(2,len(l)):
+        if(l[i-1]-l[i]!=0):
+            return None
+    else:
+        return mat
+
+b)
+
+def cifre(mat, x, *args):
+    linii=[]
+    maimic=[]
+    maimare=[]
+    for i in args:
+        linii.append(int(i))
+    for linie in linii:
+        maimicpelinie=[]
+        for i in range(len(mat[linie])):
+            aux=mat[linie][i]
+            sumaux=getSum(aux)
+            #print(aux,sumaux)
+            if sumaux<x:
+                maimicpelinie.append(int(aux))
+            else:
+                maimare.append(int(aux))
+        maimic.append(maimicpelinie)
+    #print(maimic)
+    #print(maimare)
+    setmaimic=set(maimic[0])
+    for i in range(1,len(maimic)):
+        setmaimic=setmaimic&set(maimic[i])
+    maimare=set(maimare)
+    return setmaimic,maimare
+
+c)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    for i in range(2,len(l)):
+        if(l[i-1]-l[i]!=0):
+            return None
+    else:
+        return mat
+
+mat=citire_matrice("matrice.in")
+print(mat)
+
+
+def getSum(n):
+    sum=0
+    for digit in str(n):
+        sum+=int(digit)
+    return sum
+
+def cifre(mat, x, *args):
+    linii=[]
+    maimic=[]
+    maimare=[]
+    for i in args:
+        linii.append(int(i))
+    for linie in linii:
+        maimicpelinie=[]
+        for i in range(len(mat[linie])):
+            aux=mat[linie][i]
+            sumaux=getSum(aux)
+            #print(aux,sumaux)
+            if sumaux<x:
+                maimicpelinie.append(int(aux))
+            else:
+                maimare.append(int(aux))
+        maimic.append(maimicpelinie)
+    #print(maimic)
+    #print(maimare)
+    setmaimic=set(maimic[0])
+    for i in range(1,len(maimic)):
+        setmaimic=setmaimic&set(maimic[i])
+    maimare=set(maimare)
+    return setmaimic,maimare
+
+impar=len(mat)%2
+if impar==1:
+    mijloc=len(mat)//2+1
+    set1,set2=cifre(mat,9,mijloc)
+    set3, set4 = cifre(mat, 9, 0, 1, 2)
+    print(set1)
+    print(len(set4))
+else:
+    mijloc1=len(mat)//2-1
+    mijloc2=len(mat)//2
+    set1,set2=cifre(mat,9,mijloc1,mijloc2)
+    #print(set1)
+    vector_de_afisat=[]
+    for i in set1:
+        vector_de_afisat.append(int(i))
+    vector_de_afisat.sort()
+    #print(vector_de_afisat)
+    for i in vector_de_afisat:
+        print(i,end=" ")
+    print()
+    set3,set4=cifre(mat,9,0,1,2)
+    print(len(set4))
+
+
+
+2.
+
+a) 
+def permuta_cuvinte(prop,k):
+    ct=0
+    mat=prop.split()
+    #print(mat)
+    prop_modif=[]
+    for i in mat:
+        if(len(i)<=k):
+            prop_modif.append(i)
+        else:
+            cuv_nou=i[k:]+i[:k]
+            prop_modif.append(cuv_nou)
+            ct=ct+1
+    prop_noua=""
+    for cuv in prop_modif:
+        prop_noua=prop_noua+cuv+" "
+    return prop_noua,ct
+
+
+b)
+
+def sub_medie(lista):
+    if(len(lista)==0):
+        return None
+    suma=0
+    for i in lista:
+        suma=suma+int(i)
+    media=suma/len(lista)
+    contor=0
+    for i in lista:
+        if int(i)<media:
+            contor=contor+1
+    return media,contor
+
+c)
+
+def permuta_cuvinte(prop,k):
+    ct=0
+    mat=prop.split()
+    #print(mat)
+    prop_modif=[]
+    for i in mat:
+        if(len(i)<=k):
+            prop_modif.append(i)
+        else:
+            cuv_nou=i[k:]+i[:k]
+            prop_modif.append(cuv_nou)
+            ct=ct+1
+    prop_noua=""
+    for cuv in prop_modif:
+        prop_noua=prop_noua+cuv+" "
+    return prop_noua,ct
+
+def sub_medie(lista):
+    if(len(lista)==0):
+        return None
+    suma=0
+    for i in lista:
+        suma=suma+int(i)
+    media=suma/len(lista)
+    contor=0
+    for i in lista:
+        if int(i)<media:
+            contor=contor+1
+    return media,contor
+
+f=open("circular.in", 'r')
+prop=[line.rstrip() for line in f]
+k=int(input("k= "))
+lista_valori=[]
+with open('circular.out', 'w') as g:
+    for pr in prop:
+        pr_noua,ctcuv=permuta_cuvinte(pr,k)
+        print(pr_noua,file=g)
+        lista_valori.append(ctcuv)
+print(lista_valori)
+val1,val2=sub_medie(lista_valori)
+print(str(round(val1,2)),val2)
+
+3.
+
+a)
+
+
+

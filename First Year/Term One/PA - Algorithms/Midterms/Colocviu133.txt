@@ -1,0 +1,336 @@
+1. a)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    for i in range(2,len(l)):
+        if(l[i-1]-l[i]!=1):
+            return None
+    else:
+        return mat
+
+b)
+
+def elemente_divizibile(mat,x,y,*args):
+    divx=[]
+    linii=[]
+    nedivy=[]
+    for i in args:
+        linii.append(int(i))
+
+    for linie in linii:
+        divxlinie=[]
+        for i in range(len(mat[linie])):
+            if(int(mat[linie][i])%y!=0):
+                nedivy.append(int(mat[linie][i]))
+            if((int(mat[linie][i])%x==0)):
+                divxlinie.append((int(mat[linie][i])))
+        if len(divxlinie)>0:
+            divx.append(set(divxlinie))
+    setdivx = set(divx[0])
+    for i in range(1, len(divx)):
+        setdivx= setdivx & divx[i]
+    nedivy=set(nedivy)
+    return setdivx,nedivy
+
+c)
+
+def citire_matrice(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    l = [len(x) for x in mat]
+    for i in range(2,len(l)):
+        if(l[i-1]-l[i]!=1):
+            return None
+    else:
+        return mat
+
+print(citire_matrice("matrice.in"))
+mat=citire_matrice("matrice.in")
+
+def elemente_divizibile(mat,x,y,*args):
+    divx=[]
+    linii=[]
+    nedivy=[]
+    for i in args:
+        linii.append(int(i))
+
+    for linie in linii:
+        divxlinie=[]
+        for i in range(len(mat[linie])):
+            if(int(mat[linie][i])%y!=0):
+                nedivy.append(int(mat[linie][i]))
+            if((int(mat[linie][i])%x==0)):
+                divxlinie.append((int(mat[linie][i])))
+        if len(divxlinie)>0:
+            divx.append(set(divxlinie))
+    setdivx = set(divx[0])
+    for i in range(1, len(divx)):
+        setdivx= setdivx & divx[i]
+    nedivy=set(nedivy)
+    return setdivx,nedivy
+
+set1,set2=elemente_divizibile(mat,3,2,0,1)
+vector1=[]
+for i in set1:
+    vector1.append(int(i))
+vector1.sort()
+for i in vector1:
+    print(i,end=" ")
+print()
+print(len(set2))
+
+
+
+2. a)
+
+def modifica_prefix(x,y,prop):
+    sirfinal=''
+    contor=0
+    for cuvant in prop.split():
+        if cuvant.startswith(x):
+            sirfinal+= cuvant.replace(x,y)
+            sirfinal+=" "
+            contor+=1
+        else:
+            sirfinal+=cuvant
+            sirfinal += " "
+    return sirfinal,contor
+
+b)
+
+def poz_max(v):
+    maxim=int(v[0])
+    for i in range(len(v)):
+        if(int(v[i])>maxim):
+            maxim=v[i]
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+--------------------------------------
+
+def poz_max(v):
+    maxim=max(v)
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+c)
+
+def modifica_prefix(x,y,prop):
+    sirfinal=''
+    contor=0
+    for cuvant in prop.split():
+        if cuvant.startswith(x):
+            sirfinal+= cuvant.replace(x,y)
+            sirfinal+=" "
+            contor+=1
+        else:
+            sirfinal+=cuvant
+            sirfinal += " "
+    return sirfinal,contor
+
+
+def poz_max(v):
+    maxim=max(v)
+    lista_max=[]
+    for i in range(len(v)):
+        if(int(v[i])==maxim):
+            lista_max.append(i+1)
+    return lista_max
+
+#print(poz_max([8,22,5,22,23,0,0,8]))
+
+f=open("propozitii.in", 'r')
+prop=[line.rstrip() for line in f]
+#print(prop)
+a=input("a=")
+b=input("b=")
+lista_maxime_indici=[]
+with open('propozitii_modificate.out', 'w') as g:
+    for i in prop:
+        sirdeafisat,cont=modifica_prefix(a,b,i)
+        print(sirdeafisat,file=g)
+        lista_maxime_indici.append(cont)
+vector_de_afisat=poz_max(lista_maxime_indici)
+for nr in vector_de_afisat:
+    print(nr,end=" ")
+
+
+3. 
+
+a)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("autori.in")
+print(mat)
+
+autori=[]
+
+nr_autori=int(mat[0][0])
+nr_carti=int(mat[0][1])
+
+autori.append((nr_autori,nr_carti))
+
+contor=1
+for i in range(contor,contor+nr_autori):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    autori.append((int(numar),str))
+
+contor=nr_autori+1
+for i in range(contor,contor+nr_carti):
+    str=""
+    for j in range(4, len(mat[i])):
+        str=str+mat[i][j]+" "
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),mat[i][3], str)
+    autori.append(tupl)
+
+print(autori)
+
+b)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("autori.in")
+print(mat)
+
+autori=[]
+
+nr_autori=int(mat[0][0])
+nr_carti=int(mat[0][1])
+
+autori.append((nr_autori,nr_carti))
+
+contor=1
+for i in range(contor,contor+nr_autori):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    autori.append((int(numar),str))
+
+contor=nr_autori+1
+for i in range(contor,contor+nr_carti):
+    str=""
+    for j in range(4, len(mat[i])):
+        str=str+mat[i][j]+" "
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),mat[i][3], str)
+    autori.append(tupl)
+
+print(autori)
+
+def stergere_carte(vector,cod_c):
+    for i in range(1+vector[0][0], len(vector)):
+        if(vector[i][1]==cod_c):
+            cod_a=vector[i][0]
+            for j in range(1,1+vector[0][0]):
+                if vector[j][0]==cod_a:
+                    print("Cartea a fost scrisa de", vector[j][1])
+            vector.remove(vector[i])
+            #print(vector)
+            return 1
+    return None
+
+cod_carte_citit=int(input("Cod carte: "))
+if(stergere_carte(autori,cod_carte_citit)==None):
+    print("Cartea nu exista")
+else:
+    print(autori)
+
+c)
+
+def citire_fis(file):
+    f = open(file, 'r')
+    mat = [line.split() for line in f]
+    return mat
+
+mat=citire_fis("autori.in")
+print(mat)
+
+autori=[]
+
+nr_autori=int(mat[0][0])
+nr_carti=int(mat[0][1])
+
+autori.append((nr_autori,nr_carti))
+
+contor=1
+for i in range(contor,contor+nr_autori):
+    str=""
+    for j in mat[i]:
+        if j.isnumeric()==True:
+            numar=j
+        else:
+            str+=j+" "
+    autori.append((int(numar),str))
+
+contor=nr_autori+1
+for i in range(contor,contor+nr_carti):
+    str=""
+    for j in range(4, len(mat[i])):
+        str=str+mat[i][j]+" "
+    tupl=(int(mat[i][0]),int(mat[i][1]),int(mat[i][2]),mat[i][3], str)
+    autori.append(tupl)
+
+print(autori)
+
+def sortare(lst):
+    return lst[1],-lst[2],lst[0]
+
+def carti_autor(vector,cod_autor):
+    gasit=0
+    lista_carti=[]
+    for i in range(1,1+vector[0][0]):
+        if(vector[i][0]==cod_autor):
+            gasit=1
+            nume=vector[i][1]
+    if gasit==0:
+        return []
+    else:
+        for i in range(1+vector[0][0], len(vector)):
+            if vector[i][0]==cod_autor:
+                lista_carti.append((vector[i][4],int(vector[i][2]),int(vector[i][3])))
+    lista_carti.sort(key=sortare)
+    return nume,lista_carti
+
+nr_aut=int(input("COD AUTOR: "))
+if(carti_autor(autori,nr_aut)==[]):
+    print("cod incorect")
+else:
+    nume,vector_afis=carti_autor(autori,nr_aut)
+    print(nume)
+    for i in vector_afis:
+        print(i[0]," ",i[1]," ",i[2])
+
+
+
+
+
+
+
+
+
+
+
+
+
