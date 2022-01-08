@@ -7,6 +7,8 @@ In this repository, you can find all resources, homeworks and projects from my <
 ### First Year
 #### Term One
 - ASC - Architecture of Computer Systems
+- GCEA - Critical Thinking and Academic Ethics
+- PA - Algorithms
 #### Term Two
 
 ### Second Year
