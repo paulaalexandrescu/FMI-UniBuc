@@ -10,7 +10,4 @@ In this repository, you can find all resources, homeworks and projects from my <
 - GCEA - Critical Thinking and Academic Ethics
 - PA - Algorithms
 #### Term Two
-
-### Second Year
-#### Term One
-#### Term Two
+- BD - Databases
